@@ -17,10 +17,11 @@ export default {
 </template>
 <style>
 #app {
-  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-family: "Inter", Medium, Black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #323d4a;
   margin: 60px;
 }
+
 </style>
