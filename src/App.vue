@@ -7,7 +7,8 @@ export default {
       title: "Welcome to Opportunity",
       sheet_id: import.meta.env.VITE_GOOGLE_SHEET_ID,
       api_token: import.meta.env.VITE_GOOGLE_API_KEY,
-    }
+      entries: []
+    };
   },
 
   computed: {
@@ -18,9 +19,28 @@ export default {
       const month = currentDate.getMonth() + 1; // hole den Monat aus dem Date-Objekt
       const year = currentDate.getFullYear(); // hole das Jahr aus dem Date-Objekt
       return day + "." + month + "." + year; // gib mir das Datum im Format DD.MM.YYYY zurück
+    }, gsheet_url() {
+return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+},
+
+
+},
+
+methods: {
+    async getData() {
+      const response = await fetch(this.gsheet_url);
+      const data = await response.json();
+      this.entries = data.valueRanges[0].values;
     }
-  }
-};
+    },
+
+    mounted() {
+    this.getData(); // get first initial data and then wait for the next update
+  },
+
+
+}
+
 
 </script>
 
@@ -43,20 +63,19 @@ export default {
 
 
   
-      <li class="event">
-        <p>14:00Uhr</p>
-        <p>Basisbeschäftigung Besuch</p>
-        <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
-      </li>  
+    <li class="event">
+      <p class="time">14:00Uhr</p>
+      <p>Basisbeschäftigung Besuch</p>
+      <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
+    </li>  
 
 
 
-  
-      <li class="event">
-        <p>14:00Uhr</p>
-        <p>Basisbeschäftigung Besuch</p>
-        <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
-      </li>
+    <li class="event">
+      <p class="time">14:00Uhr</p>
+      <p>Basisbeschäftigung Besuch</p>
+      <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
+    </li>
   
 
   </ul>
@@ -105,6 +124,11 @@ header {
   border-radius: 5px;
   margin-bottom: 20px;
   padding: 10px;
+}
+
+
+.time {
+  color: #EB5E00;
 }
 
 .event-header {
