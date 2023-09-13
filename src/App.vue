@@ -49,55 +49,63 @@ mounted() {
 
 // html
 <template>
-  <div id="app">
+  <div id="application">
     <header>
       <h1 class="site-title">{{ title }}</h1>
       <p>{{currentDate}}</p>
     </header>
 
 
-  <ul>
-    <li class="event" v-for="entry in entries">
-      <p class="time"> {{entry[0]}}</p>
-      <p> {{entry[1]}}</p>
-      <p> {{entry[2]}}</p>
-      <p> {{entry[3]}}</p>
-
-    </li>
+    <ul>
+      <li class="event" v-for="entry in entries">
+        <p class="time"> {{entry[0]}}, {{entry[1]}}</p>
+        <p class="event-content title"> {{entry[2]}}</p>
+        <p class="event-content">{{entry[3]}}</p>
+      </li>
 
 
-  
     
-  </ul>
+      
+    </ul>
 
 
 
 
 
-    <footer>
-        <img src="./assets/STZH_SEB_Logo.png" alt="Footer Logo">
-        <img src="./assets/Opportunity.png" alt="Footer Logo">
-        <img src="./assets/SAG_Logo_De.png" alt="Footer Logo">
+    <footer class="footer">
+      <div  class="logos">
+        <img class="logopic" src="./assets/STZH_SEB_Logo.png" alt="Footer Logo">
+        <img class="logopic" src="./assets/Opportunity.png" alt="Footer Logo">
+        <img class="logopic" src="./assets/SAG_Logo_De.png" alt="Footer Logo">
+      </div>
     </footer>
   
-    </div>
+  </div>
   </template>  
+
+
 // css
 <style>
-#app {
-  font-family: "Inter", Medium, Black;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #323d4a;
-  margin: 60px;
-  background-color: #E8EFF4; /* Hellblauer Hintergrund */
-  padding: 20px; /* Abstand um den Inhalt */
-}
+#application {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased; 
+  margin-top: 20px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+  ul {
+    padding: 0px;
+  }
 
 header {
-  text-align: center;
   margin-bottom: 20px;
 }
+
+.body {
+  background-color: #E8EFF4;
+} 
 
 .site-title {
   font-size: 2.5rem;
@@ -105,34 +113,54 @@ header {
 
 .event {
   background-color: #0F05A0; /* Dunkelblauer Hintergrund für die Ereignisse */
-  color: #fff; /* Weiße Schriftfarbe */
+  color: #FFBFAB; /* Lachs Schriftfarbe */
   border-radius: 5px;
   margin-bottom: 20px;
-  padding: 10px;
+  padding: 30px;
 }
 
 
 .time {
   color: #EB5E00;
-}
-
-.event-header {
-  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
 }
 
 .event-content {
-  padding: 10px;
+  color: #FFBFAB;
+  font-size: 28px;
 }
 
-footer {
-  text-align: center;
-  margin-top: 20px;
+.event-content.title {
+  font-weight: 900;
 }
+
+
 
 /* Stil für Bilder im Footer */
-footer img {
-  max-width: 100px;
+.footer {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  flex-direction: row;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-around;
+  height: fit-content;
+}
+
+.logopic {
+  width: 200px;
+  height: 50px;
   margin: 10px;
+}
+ul {
+  list-style-type: none;
 }
 </style>
 
