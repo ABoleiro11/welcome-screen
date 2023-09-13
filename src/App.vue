@@ -19,8 +19,10 @@ export default {
       const month = currentDate.getMonth() + 1; // hole den Monat aus dem Date-Objekt
       const year = currentDate.getFullYear(); // hole das Jahr aus dem Date-Objekt
       return day + "." + month + "." + year; // gib mir das Datum im Format DD.MM.YYYY zurück
-    }, gsheet_url() {
-return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+    },
+    
+    gsheet_url() {
+return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
 },
 
 
@@ -32,11 +34,11 @@ methods: {
       const data = await response.json();
       this.entries = data.valueRanges[0].values;
     }
-    },
+},
 
-    mounted() {
+mounted() {
     this.getData(); // get first initial data and then wait for the next update
-  },
+},
 
 
 }
@@ -55,29 +57,17 @@ methods: {
 
 
   <ul>
-    <li class="event">
-      <p class="time">14:00Uhr</p>
-      <p>Basisbeschäftigung Besuch</p>
-      <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
-      </li>
+    <li class="event" v-for="entry in entries">
+      <p class="time"> {{entry[0]}}</p>
+      <p> {{entry[1]}}</p>
+      <p> {{entry[2]}}</p>
+      <p> {{entry[3]}}</p>
 
-
-  
-    <li class="event">
-      <p class="time">14:00Uhr</p>
-      <p>Basisbeschäftigung Besuch</p>
-      <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
-    </li>  
-
-
-
-    <li class="event">
-      <p class="time">14:00Uhr</p>
-      <p>Basisbeschäftigung Besuch</p>
-      <p>Interessierte für den zweiten Kurs werden uns besuchen</p>
     </li>
-  
 
+
+  
+    
   </ul>
 
 
@@ -90,13 +80,8 @@ methods: {
         <img src="./assets/SAG_Logo_De.png" alt="Footer Logo">
     </footer>
   
-  
-  
-  </div>
-</template>
-
-
-
+    </div>
+  </template>  
 // css
 <style>
 #app {
