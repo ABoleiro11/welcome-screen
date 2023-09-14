@@ -52,7 +52,7 @@ mounted() {
   <div id="application">
     <header>
       <h1 class="site-title">{{ title }}</h1>
-      <p>{{currentDate}}</p>
+      <p class="date">{{currentDate}}</p>
     </header>
 
 
@@ -103,19 +103,27 @@ header {
   margin-bottom: 20px;
 }
 
-.body {
+body {
   background-color: #E8EFF4;
 } 
 
 .site-title {
-  font-size: 2.5rem;
+  font-size: 62px;
+  margin-bottom: 0px;
+}
+
+.date {
+  color: #9AA7B1;
+  font-size: 62px;
+  margin-top: 18px;
+  margin-bottom: 30px;
 }
 
 .event {
   background-color: #0F05A0; /* Dunkelblauer Hintergrund für die Ereignisse */
   color: #FFBFAB; /* Lachs Schriftfarbe */
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding: 30px;
 }
 
